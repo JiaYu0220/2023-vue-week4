@@ -9,15 +9,8 @@ const app = createApp({
       apiUrl: "https://ec-course-api.hexschool.io/v2",
       apiPath: "jiayu",
       products: [],
-      tempProduct: { imagesUrl: [], is_enabled: 0 },
+      tempProduct: { imagesUrl: [] },
       pagination: {},
-      // "pagination": {
-      //   "total_pages": 2,
-      //   "current_page": 1,
-      //   "has_pre": false,
-      //   "has_next": true,
-      //   "category": ""
-      // },
     };
   },
   mounted() {
@@ -61,7 +54,14 @@ const app = createApp({
           productModal.show();
           break;
         case "add":
-          this.tempProduct = { imagesUrl: [], is_enabled: 0 };
+          this.tempProduct = {
+            imagesUrl: [],
+            is_enabled: 0,
+            stock: 0,
+            rate: 0,
+            rateNum: 0,
+            comments: [],
+          };
           productModal.show();
           break;
         case "delete":

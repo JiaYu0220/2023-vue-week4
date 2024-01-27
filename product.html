@@ -25,8 +25,10 @@
             <tr>
               <th width="120">分類</th>
               <th>產品名稱</th>
-              <th width="120">原價</th>
-              <th width="120">售價</th>
+              <th width="120">評等(評等數)</th>
+              <th width="100">原價</th>
+              <th width="100">售價</th>
+              <th width="100">庫存</th>
               <th width="100">是否啟用</th>
               <th width="120">編輯</th>
             </tr>
@@ -35,8 +37,13 @@
             <tr v-for="product in products" :key="product.id">
               <td>{{product.category}}</td>
               <td>{{product.title}}</td>
+              <td>
+                {{product.rateNum?
+                `${product.rate}(${product.rateNum})`:'尚無評價'}}
+              </td>
               <td class="text-end">{{product.origin_price}}</td>
               <td class="text-end">{{product.price}}</td>
+              <td class="text-end">{{product.stock}}</td>
               <td>
                 <span :class="{'text-success':product.is_enabled}"
                   >{{!product.is_enabled?'未':""}}啟用</span
@@ -254,6 +261,19 @@
                         class="form-control"
                         placeholder="請輸入售價"
                         v-model.number="product.price"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-md-6">
+                      <label for="stock" class="form-label">庫存</label>
+                      <input
+                        id="stock"
+                        type="number"
+                        min="0"
+                        class="form-control"
+                        placeholder="請輸入庫存數"
+                        v-model.number="product.stock"
                       />
                     </div>
                   </div>
